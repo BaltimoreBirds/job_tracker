@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'webmock/rspec'
+require 'sinatra'
 
 
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -51,4 +52,9 @@ RSpec.configure do |config|
       with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, body: "stubbed response", headers: {})
   end
+
+  config.before(:each) do
+    stub_request(:any, /api.github.com/).to_rack(FakeGitHub)
+  end
+
 end

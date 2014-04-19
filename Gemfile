@@ -42,6 +42,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'timecop'
   gem 'webmock'
+  gem 'sinatra'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
