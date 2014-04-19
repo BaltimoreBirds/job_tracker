@@ -20,8 +20,8 @@ features 'unregistered user registers for account', %Q{
 		click_on 'Sign up'
 
 		expect(page).to have_content('Sign up with your Github Account.')
-		fill_in "Email", with: "Mikeswanson12@msn.com"
-		fill_in "Password", with: "@!mj2579TERPS"
+		fill_in "Email", with: 
+		fill_in "Password", with: 
 	end
 	
 end
