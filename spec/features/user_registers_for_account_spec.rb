@@ -6,7 +6,7 @@ features 'unregistered user registers for account', %Q{
 	So that my jobs will be saved. 
 
 	Acceptance Critera
-	-unregistered users see register button on home page.
+	-unregistered users see  button on home page.
 	- 
 } do
 	
