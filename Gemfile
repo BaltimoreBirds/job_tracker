@@ -46,6 +46,7 @@ group :test, :development do
   gem 'webmock'
   gem 'sinatra'
   gem 'dotenv-rails'
+  gem 'vcr'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
