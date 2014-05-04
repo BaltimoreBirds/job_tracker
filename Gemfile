@@ -45,7 +45,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'timecop'
   gem 'webmock'
-  gem 'sinatra'
+  # gem 'sinatra'
   gem 'dotenv-rails'
   gem 'vcr'
 end
