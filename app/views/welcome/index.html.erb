@@ -1,3 +1,9 @@
 <h1>Welcome index!</h1>
 
-<%= link_to 'Sign In With GitHub', '/auth/github' %>
+
+<%= link_to 'Log Out', session_path("delete"), method: :delete%>
+
+<div><%= link_to 'Sign In With GitHub', '/auth/github' %></div>
+
+<!-- <div><a href="https://github.com/login/oauth/authorize?client_id=e18e60d7e515e632f778">Log in with Github</a></div> -->
+
