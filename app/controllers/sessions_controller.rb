@@ -8,13 +8,12 @@ require 'rest-client'
 	def create
 		# client = OAuth2::Client.new(ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], :site => 'http://localhost:3000')
 		@auth = request.env["omniauth.auth"]
-		binding.pry
 	    @token = @auth["credentials"]["token"]
 	    session[:uid] = @auth.uid	
 	    session[:token] = @token
 	    @code = params[:code] 
 		
-		redirect_to root_path, notice: 'You have successfully signed in!'
+		create_github_user
  	end
 
  	def get_access_token
@@ -36,15 +35,15 @@ require 'rest-client'
 	    flash[:notice] = "You are now logged out."
 	end
 
-	# def create_github_user
-	# 	@user = User.find_for_github_oauth(@auth.uid, @auth.info.name, @auth.info.email, @auth.info.nickname)
+	def create_github_user
+		@user = User.find_for_github_oauth(@auth.uid, @auth.info.name, @auth.info.email, @auth.info.nickname)
 
-	#     if @user.persisted? 
-	#       redirect_to root
-	#     else
-	#       redirect_to root_path
-	#       flash[:notice] = "There was a problem signing you in. Please try again."
-	#     end
-	# end
+	    if @user.persisted? 
+	      redirect_to root_path, notice: 'You have successfully signed in!'
+	    else
+	      redirect_to root_path
+	      flash[:notice] = "There was a problem signing you in. Please try again."
+	    end
+	end
 
 end
