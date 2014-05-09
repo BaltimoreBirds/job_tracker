@@ -15,7 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+
 gem 'omniauth-github'
+gem 'oauth2'
 
 gem 'rest-client'
 
@@ -46,11 +48,16 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'quiet_assets'
   gem 'timecop'
-  gem 'webmock'
   # gem 'sinatra'
   gem 'dotenv-rails'
-  gem 'vcr'
 end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
+gem 'launchy'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

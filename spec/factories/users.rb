@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :user do
-    github_uid "MyString"
-    name "MyString"
-    display_name "MyString"
+    github_uid "4583382"
+    name "Michael Swain"
+    display_name "BmoreBirds"
+    email "mikey@msn.com"
   end
 end

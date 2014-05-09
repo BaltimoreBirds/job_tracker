@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-features 'unregistered user registers for account', %Q{
+feature 'unregistered user registers for account', %Q{
 	As an unregistered user
 	I want to register
 	So that my jobs will be saved. 
@@ -13,17 +13,13 @@ features 'unregistered user registers for account', %Q{
 
 	scenario 'New user signs in with github' do
 
-		use_vcr_cassette "feed", :record => :new_episodes
-
-
 		prev_count = User.count
 		visit '/' 
 		expect(page).to have_content('Job Tracker')
-		click_on 'Sign in with Github'
+		click_link('Sign in with GitHub')
 
-		expect(page).to have_content('Sign up with your Github Account.')
-		fill_in "Email", with: 
-		fill_in "Password", with: 
+		expect(User.count).to eql(prev_count + 1)
+			
 	end
-	
+
 end

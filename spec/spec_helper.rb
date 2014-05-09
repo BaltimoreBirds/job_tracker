@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'webmock/rspec'
+require 'shoulda/matchers'
 require 'vcr'
 # require 'sinatra'
 
@@ -18,6 +19,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+WebMock.allow_net_connect!
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -26,7 +29,10 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  config.extend VCR::RSpec::Macros
+
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({"provider"=>"github", "uid"=>"4883382", "info"=>{"nickname"=>"BaltimoreBirds", "email"=>"mikeswanson12@msn.com", "name"=>"Michael Swanson", "image"=>"https://avatars.githubusercontent.com/u/4883382?", "urls"=>{"GitHub"=>"https://github.com/BaltimoreBirds", "Blog"=>"http://baltimorebirds.github.io/"}}, "credentials"=>{"token"=> '089120u091412034u', "expires"=>false}, "extra"=>{"raw_info"=>{"login"=>"BaltimoreBirds", "id"=>4883382, "avatar_url"=>"https://avatars.githubusercontent.com/u/4883382?", "gravatar_id"=>"bdba274b3d9b4253096c94c08e0803e4", "url"=>"https://api.github.com/users/BaltimoreBirds", "html_url"=>"https://github.com/BaltimoreBirds", "followers_url"=>"https://api.github.com/users/BaltimoreBirds/followers", "following_url"=> "https://api.github.com/users/BaltimoreBirds/following{/other_user}", "gists_url"=> "https://api.github.com/users/BaltimoreBirds/gists{/gist_id}", "starred_url"=> "https://api.github.com/users/BaltimoreBirds/starred{/owner}{/repo}", "subscriptions_url"=> "https://api.github.com/users/BaltimoreBirds/subscriptions", "organizations_url"=>"https://api.github.com/users/BaltimoreBirds/orgs", "repos_url"=>"https://api.github.com/users/BaltimoreBirds/repos", "events_url"=> "https://api.github.com/users/BaltimoreBirds/events{/privacy}", "received_events_url"=> "https://api.github.com/users/BaltimoreBirds/received_events", "type"=>"User", "site_admin"=>false, "name"=>"Michael Swanson", "company"=>"The Lukens Company", "blog"=>"http://baltimorebirds.github.io/", "location"=>"Arlington, VA", "email"=>"mikeswanson12@msn.com", "hireable"=>true, "bio"=>nil, "public_repos"=>28, "public_gists"=>7, "followers"=>0, "following"=>5, "created_at"=>"2013-06-29T14:37:34Z", "updated_at"=>"2014-05-06T20:51:23Z"}}})
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

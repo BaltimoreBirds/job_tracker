@@ -9,9 +9,8 @@ JobTracker::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  # get 'https://github.com/login/oauth/authorize', to: 'session#create'
-
   get '/auth/:provider/callback', to: 'sessions#create'
+
 
 
   # Example of regular route:

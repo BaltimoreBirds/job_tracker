@@ -4,21 +4,27 @@ require "net/http"
 require 'pry'
 require 'rest-client'
 
+
 	def create
+		# client = OAuth2::Client.new(ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], :site => 'http://localhost:3000')
 		@auth = request.env["omniauth.auth"]
+		binding.pry
 	    @token = @auth["credentials"]["token"]
-	    session[:uid] = @auth.uid
+	    session[:uid] = @auth.uid	
 	    session[:token] = @token
-	    @code = params[:code] #not used right now
-	    
-		# 'redirect_uri' => 'http://localhost:3000/auth/github/callback'
-	    # result = RestClient.post('https://github.com/login/oauth/access_token',
-     #          {:client_id => ENV['GITHUB_KEY'],
-     #           :client_secret => ENV['GITHUB_SECRET'],
-     #           :code => @code},
-     #           :accept => :json)
+	    @code = params[:code] 
 		
 		redirect_to root_path, notice: 'You have successfully signed in!'
+ 	end
+
+ 	def get_access_token
+
+		# 'redirect_uri' => 'http://localhost:3000/auth/github/callback'
+	    result = RestClient.post('https://github.com/login/oauth/access_token',
+              {:client_id => ENV['GITHUB_KEY'],
+               :client_secret => ENV['GITHUB_SECRET'],
+               :code => @code},
+               :accept => :json)
  	end
 
 	def destroy
