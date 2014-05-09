@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-feature 'unregistered user registers for account', %Q{
+feature 'User signs in with github', %Q{
 	As an unregistered user
-	I want to register
-	So that my jobs will be saved. 
+	I want to register with my github account
+	So that I will have a profile by which jobs are organized. 
 
 	Acceptance Critera
 	- unregistered users see register button on home page.
@@ -11,7 +11,7 @@ feature 'unregistered user registers for account', %Q{
 	- upon registration, user is taken to user job board page. 
 } do
 
-	scenario 'New user signs in with github' do
+	scenario 'User signs in with github' do
 
 		prev_count = User.count
 		visit '/' 
