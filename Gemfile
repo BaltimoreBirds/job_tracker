@@ -50,6 +50,7 @@ group :test, :development do
   gem 'timecop'
   # gem 'sinatra'
   gem 'dotenv-rails'
+  gem 'rack_session_access'
 end
 
 group :test do

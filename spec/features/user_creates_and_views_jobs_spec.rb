@@ -23,9 +23,9 @@ feature 'User creates and views jobs', %Q{
 	scenario 'User creates a new Job' do
 		visit '/' 
 		expect(page).to have_content('Job Tracker')
-		click_link('Sign in with GitHub')
+		click_link('Sign in')
 
-		
+
 				
 	end
 

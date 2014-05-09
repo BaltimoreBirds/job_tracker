@@ -8,6 +8,14 @@
 </head>
 <body>
 
+    <% if current_user? %>
+      <%= link_to 'Sign Out', session_path("delete"), method: :delete%>
+    <% else %>
+      <div><%= link_to 'Sign in', '/auth/github' %></div>
+    <% end %>
+
+
+
     <%- if notice !=  nil -%>
         <div data-alert class="alert-box alert row ">
           <p class="small-6 large-centered columns"><%= notice %></p>
