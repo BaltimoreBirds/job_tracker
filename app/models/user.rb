@@ -6,13 +6,6 @@ class User < ActiveRecord::Base
 	validates_presence_of :github_uid, :name, :email
 	validates_uniqueness_of :github_uid, :display_name
 
-
-
-
-
-
-
-
 	def self.find_for_github_oauth(uid, name, email, nickname)
 	    user = User.where(github_uid: uid).first
 
