@@ -22,6 +22,8 @@ gem 'oauth2'
 gem 'rest-client'
 
 gem 'psych'
+
+gem 'simple_form'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

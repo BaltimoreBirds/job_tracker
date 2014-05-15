@@ -1,6 +1,5 @@
 require'spec_helper'
 
-require 'spec_helper'
 
 feature 'User creates and views jobs', %Q{
 	As a registered user, 
@@ -20,13 +19,38 @@ feature 'User creates and views jobs', %Q{
 
 } do
 
-	scenario 'User creates a new Job' do
+	before(:each) do
 		visit '/' 
 		expect(page).to have_content('Job Tracker')
 		click_link('Sign in')
 
+		expect(page).to have_content('Sign Out')
+		expect(page).to_not have_content('Sign in')
+		click_link('Start a new Job')
+		expect(page).to have_content('Start a new Job')
+	end
 
-				
+	scenario 'User creates a new Job, sees Job page' do
+		prev_count = Job.count
+		fill_in 'job_title', with: 'Fake Job'
+		fill_in 'job_github_repo', with: 'https://github.com/BaltimoreBirds/job_tracker'
+		fill_in 'job_description', with: 'goal one, goal two'
+		click_button('Create Job')
+		expect(page).to have_content('Job Created')
+		expect(Job.count).to eql(prev_count + 1)
+
+		# expect(page).to have_content('Fake Job')
+	end
+
+	scenario 'User inputs bad github_repo link' do
+		prev_count = Job.count
+		expect(page).to have_content('Start a new Job')
+		fill_in 'job_title', with: 'Fake Job'
+		fill_in 'job_github_repo', with: 'alfalfa'
+		fill_in 'job_description', with: 'goal one, goal two'
+		click_button('Create Job')
+		expect(page).to have_content('is invalid')
+		expect(Job.count).to eql(prev_count)
 	end
 
 end

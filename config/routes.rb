@@ -1,5 +1,6 @@
 JobTracker::Application.routes.draw do
   resources :users
+  resources :jobs
   resources :sessions
   
   get "welcome/index"

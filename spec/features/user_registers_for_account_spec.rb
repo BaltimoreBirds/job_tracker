@@ -36,7 +36,7 @@ feature 'User signs in with github', %Q{
 
 
 		user = FactoryGirl.create(:user)
-		page.set_rack_session(:uid => user.github_uid)
+		page.set_rack_session(:uid => user.github_uid) # Uses rack_session_access gem
 		visit '/'
 		expect(page).to_not have_content('Sign in')
 		expect(page).to have_content('Sign Out')
