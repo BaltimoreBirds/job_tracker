@@ -7,7 +7,6 @@ require 'pry'
 
 
 	def create
-		binding.pry
 		@auth = request.env["omniauth.auth"]
 	    @token = @auth["credentials"]["token"]
 	    session[:uid] = @auth.uid	

@@ -4,7 +4,6 @@
     <%= f.input :title %>
 	<%= f.input :github_repo %>
   	<button type=button class="new_repo_btn">Create the Repo Now</button>
-  	<span class="hide_this"><h4>Repository Name:</h4><%= @job.github_repo %></span>
     <%= f.input :description, as: :text, required: false %>
     <%= f.button :submit %>
 

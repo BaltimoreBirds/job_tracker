@@ -1,5 +1,6 @@
 
-jQuery(document).ready(function() {		
+jQuery(document).ready(function() {
+	//Launches fancy popup create github repository form		
 	$('button.new_repo_btn').click(function(){
 		var fancybox = jQuery.fancybox('<div><form><h4>Choose a new repository name:</h4><input type="text" name="repo_create"/><button type=button class="create_repo_button">Create new repository</button></form></div>', {
 			'width': 830,
@@ -19,7 +20,8 @@ jQuery(document).ready(function() {
 
 		    }
 		});
-	
+
+		// posts to createNewRepo job controller action action, updates new job form
 		function createRepo(newRepoName){
 			$.post( "/createNewRepo", { repoName: newRepoName })
 				.done(function( data ) {
