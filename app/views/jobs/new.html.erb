@@ -1,11 +1,24 @@
-
+<%= include_gon %>
 <%= simple_form_for @job do |f| %>
-
+	
 	<h4>Start a new Job</h4>
     <%= f.input :title %>
-    <%= f.input :github_repo %>
+    <%if @job.github_repo != nil %> 
+	    <h4>Repository Name: </h4><%= @job.github_repo %>
+	<%else %>
+		<%= f.input :github_repo %>
+	<% end %>
   	<button type=button class="new_repo_btn">Create the Repo Now</button>
     <%= f.input :description, as: :text, required: false %>
     <%= f.button :submit %>
 
+<% end %>
+<% content_for :javascript do %>
+    <script>
+		$( document ).ready(function() {
+			if( gon.job_var !== nil){
+			    $('#input#job_github_repo').val(gon.job_var);
+		    }
+		});
+    </script>
 <% end %>

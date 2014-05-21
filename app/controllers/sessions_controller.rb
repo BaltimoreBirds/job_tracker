@@ -2,10 +2,12 @@ class SessionsController < ApplicationController
 require "uri"
 require "net/http"	
 require 'pry'
-require 'rest-client'
+
+	respond_to :html, :json
 
 
 	def create
+		binding.pry
 		# client = OAuth2::Client.new(ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], :site => 'http://localhost:3000')
 		@auth = request.env["omniauth.auth"]
 	    @token = @auth["credentials"]["token"]

@@ -18,8 +18,10 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'omniauth-github'
 gem 'oauth2'
+gem "octokit", "~> 3.0"
 
 gem 'rest-client'
+gem 'gon'
 
 gem 'psych'
 

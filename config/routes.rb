@@ -12,7 +12,7 @@ JobTracker::Application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
 
-
+  post '/createNewRepo', to: 'jobs#createRepo'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

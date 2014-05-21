@@ -46,6 +46,7 @@ feature 'User creates and views jobs', %Q{
 		prev_count = Job.count
 		expect(page).to have_content('Start a new Job')
 		fill_in 'job_title', with: 'Fake Job'
+		# binding.pry
 		fill_in 'job_github_repo', with: 'alfalfa'
 		fill_in 'job_description', with: 'goal one, goal two'
 		click_button('Create Job')
