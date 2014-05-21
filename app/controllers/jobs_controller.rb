@@ -9,7 +9,6 @@ class JobsController < ApplicationController
 	    client.create_repository(params[:repoName])
 		@job = Job.new
 		@job.github_repo = 'https://github.com/'+current_user?.display_name+'/'+params[:repoName]
-		gon.job_var = @job.github_repo
 	    respond_to do |format|
 	        format.json  { render json:  @job }
 	    end

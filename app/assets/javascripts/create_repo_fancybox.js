@@ -10,7 +10,6 @@ jQuery(document).ready(function() {
 			'scrolling': 'no',
 			'autoDimensions': 'false',
 		    afterShow: function () {
-				// e.preventDefault();
 				$('.create_repo_button').on('click', function(e){
 					e.preventDefault();
 					var usersRepoName = $('input[name="repo_create"]').val();

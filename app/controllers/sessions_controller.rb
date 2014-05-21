@@ -8,7 +8,6 @@ require 'pry'
 
 	def create
 		binding.pry
-		# client = OAuth2::Client.new(ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], :site => 'http://localhost:3000')
 		@auth = request.env["omniauth.auth"]
 	    @token = @auth["credentials"]["token"]
 	    session[:uid] = @auth.uid	
@@ -16,16 +15,6 @@ require 'pry'
 	    @code = params[:code] 
 		
 		create_github_user
- 	end
-
- 	def get_access_token
-
-		# 'redirect_uri' => 'http://localhost:3000/auth/github/callback'
-	    result = RestClient.post('https://github.com/login/oauth/access_token',
-              {:client_id => ENV['GITHUB_KEY'],
-               :client_secret => ENV['GITHUB_SECRET'],
-               :code => @code},
-               :accept => :json)
  	end
 
 	def destroy
