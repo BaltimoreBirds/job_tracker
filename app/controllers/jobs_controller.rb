@@ -5,16 +5,14 @@ class JobsController < ApplicationController
 	end
 
 	def createRepo
-		binding.pry
 		client = Octokit::Client.new(:access_token => session[:token])
 	    client.create_repository(params[:repoName])
-	    binding.pry
 		@job = Job.new
 		@job.github_repo = 'https://github.com/'+current_user?.display_name+'/'+params[:repoName]
-		gon.job_var = @job 
-		binding.pry
-		render action: 'new'
-		# redirect to job eit page?
+		gon.job_var = @job.github_repo
+	    respond_to do |format|
+	        format.json  { render json:  @job }
+	    end
     rescue Octokit::UnprocessableEntity
     	@job = Job.new
 	    flash[:notice] = "Repository Name is already taken. Please choose another"

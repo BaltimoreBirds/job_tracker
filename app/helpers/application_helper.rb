@@ -5,14 +5,14 @@ module ApplicationHelper
     return user
   end
 
-  def include_gon
-	  data = Rails.cache.read('gon_variables') || {}
+ #  def include_gon
+	#   data = Rails.cache.read('gon_variables') || {}
 
-	  script = "<script>window.Gon = {};"
-	  data.each do |key, val|
-	    script += "Gon." + key.to_s + val.to_json + ";"
-	  end
-	  script += "</script>"
-	  script.html_safe
-	end
+	#   script = "<script>window.gon = {};"
+	#   data.each do |key, val|
+	#     script += "gon." + key.to_s + val.to_json + ";"
+	#   end
+	#   script += "</script>"
+	#   script.html_safe
+	# end
 end

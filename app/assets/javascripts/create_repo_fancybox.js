@@ -23,6 +23,10 @@ jQuery(document).ready(function() {
 	
 		function createRepo(newRepoName){
 			$.post( "/createNewRepo", { repoName: newRepoName })
+				.done(function( data ) {
+				    $('input#job_github_repo').val(data.github_repo);
+		  }, "json");
 		}
 	});
+
 });
