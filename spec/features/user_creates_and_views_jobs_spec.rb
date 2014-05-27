@@ -39,14 +39,15 @@ feature 'User creates and views jobs', %Q{
 		expect(page).to have_content('Job Created')
 		expect(Job.count).to eql(prev_count + 1)
 
-		# expect(page).to have_content('Fake Job')
+		expect(page).to have_content('Fake Job')
+		expect(page).to have_content('https://github.com/BaltimoreBirds/job_tracker')
+		expect(page).to have_content('goal one, goal two')
 	end
 
 	scenario 'User inputs bad github_repo link' do
 		prev_count = Job.count
 		expect(page).to have_content('Start a new Job')
 		fill_in 'job_title', with: 'Fake Job'
-		# binding.pry
 		fill_in 'job_github_repo', with: 'alfalfa'
 		fill_in 'job_description', with: 'goal one, goal two'
 		click_button('Create Job')
