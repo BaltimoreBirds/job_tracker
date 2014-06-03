@@ -1,4 +1,4 @@
-class JobsUsers < ActiveRecord::Base
+class JobsUser < ActiveRecord::Base
 	belongs_to :job
 	belongs_to :user
 end

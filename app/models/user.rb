@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
 
 	has_many :jobs, 
-		through: :job_users
-	has_many :job_users
+		through: :jobs_users
+	has_many :jobs_users,
+		inverse_of: :user
 
 	validates_presence_of :github_uid, :name, :email
 	validates_uniqueness_of :github_uid, :display_name

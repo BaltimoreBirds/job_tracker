@@ -45,8 +45,7 @@ feature 'User creates and views jobs', %Q{
 		expect(page).to have_content('goal one, goal two')
 
 		user = User.first
-		binding.pry
-		expect(user.job.first.class).to eql(Job)
+		expect(user.jobs.first.class).to eql(Job)
 		expect(page).to have_content('goal one, goal two')
 	end
 
