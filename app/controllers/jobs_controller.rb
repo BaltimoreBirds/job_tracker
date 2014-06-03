@@ -31,7 +31,7 @@ class JobsController < ApplicationController
 		@job = Job.new(job_params)
 
 		if @job.save
-			redirect_to @job, notice: "Job Created"
+			redirect_to @job, notice: "Job Created!"
 		else
 			render action: 'new', notice: "There was an error, Try again."
 		end

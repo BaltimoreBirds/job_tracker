@@ -55,4 +55,6 @@ feature 'User creates and views jobs', %Q{
 		expect(Job.count).to eql(prev_count)
 	end
 
+	# User inputs repo name that's already take
+
 end
