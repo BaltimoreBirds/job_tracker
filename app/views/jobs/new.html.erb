@@ -1,0 +1,14 @@
+<%= simple_form_for @job do |f| %>
+	
+	<h4>Start a new Job</h4>
+    <%= f.input :title %>
+	<%= f.input :github_repo %>
+  	<button type=button class="new_repo_btn">Create the Repo Now</button>
+    <%= f.input :description, as: :text, required: false %>
+    <%= f.button :submit %>
+
+<% end %>
+<% content_for :javascript do %>
+    <script>
+    </script>
+<% end %>
