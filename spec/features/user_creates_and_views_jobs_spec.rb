@@ -23,6 +23,7 @@ feature 'User creates and views jobs', %Q{
 		visit '/' 
 		expect(page).to have_content('Job Tracker')
 		click_link('Sign in')
+		user = User.first
 
 		expect(page).to have_content('Sign Out')
 		expect(page).to_not have_content('Sign in')
@@ -41,6 +42,11 @@ feature 'User creates and views jobs', %Q{
 
 		expect(page).to have_content('Fake Job')
 		expect(page).to have_content('https://github.com/BaltimoreBirds/job_tracker')
+		expect(page).to have_content('goal one, goal two')
+
+		user = User.first
+		binding.pry
+		expect(user.job.first.class).to eql(Job)
 		expect(page).to have_content('goal one, goal two')
 	end
 
