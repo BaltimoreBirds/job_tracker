@@ -1,7 +1,9 @@
 JobTracker::Application.routes.draw do
   resources :users
-  resources :jobs
   resources :sessions
+  resources :jobs do
+    resources :job_sessions
+  end
   
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.

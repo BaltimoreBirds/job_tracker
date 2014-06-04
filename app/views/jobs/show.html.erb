@@ -1,5 +1,22 @@
-<h1> Show page</h1>
+<h1> Job page</h1>
 <h3><%= @job.title %></h3>
 <div>Github Repository:<%= @job.github_repo %></div>
 <div>Description:<%= @job.description %></div>
+<h3>Start a new sessions</h3>
+<div><%= link_to 'Start a new job session' %></div>
 
+<div>
+	<%= simple_form_for [@job, @job.job_sessions.build] do |f| %>
+		<%= f.input :session_title %>
+		<%= f.input :session_goals, as: :text %>
+		<%= f.submit 'Start Session'%>
+	<% end %>
+</div>
+
+<div>
+	<h3>Sessions</h3>
+	<%- if @job.job_sessions != [] && (@job.job_sessions.reverse[1] != nil)-%>
+		<%= @job.job_sessions.reverse[1].session_title %>
+		<%= @job.job_sessions.reverse[1].session_goals %>
+	<%- end -%>
+</div>
