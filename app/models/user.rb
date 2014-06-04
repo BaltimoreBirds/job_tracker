@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :jobs_users,
 		inverse_of: :user
 
+	# has_many :job_sessions, as: :sessionable
 	validates_presence_of :github_uid, :name, :email
 	validates_uniqueness_of :github_uid, :display_name
 
