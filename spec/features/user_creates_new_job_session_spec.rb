@@ -27,11 +27,13 @@ feature 'User creates and views jobs', %Q{
 		expect(page).to have_content('Job Created')
 
 		expect(page).to have_content('Start a new job session')
+		expect(page).to have_content('00:00')
 
 		fill_in 'job_session[session_goals]', with: 'Hurr Durr CODE THIS'
 		fill_in 'job_session[session_title]', with: 'testing User input'
 		click_button('Start Session')
 		expect(page).to have_content('testing User input')
+
 	end
 
 end

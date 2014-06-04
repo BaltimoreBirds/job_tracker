@@ -16,7 +16,15 @@
 <div>
 	<h3>Sessions</h3>
 	<%- if @job.job_sessions != [] && (@job.job_sessions.reverse[1] != nil)-%>
+		<h4>Session title</h4>
 		<%= @job.job_sessions.reverse[1].session_title %>
+		<h4>Session Goals</h4>
 		<%= @job.job_sessions.reverse[1].session_goals %>
+		<div class="stopwatch" data-timer="0" style="width: 400px;">
+		</div>
+		<div>
+			<%= button_to 'Start Timer', ' ', class: 'timer_start' %> 
+			<%= button_to 'Stop Timer', ' ', class: 'timer_stop' %>
+		</div>
 	<%- end -%>
 </div>
