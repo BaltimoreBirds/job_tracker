@@ -4,7 +4,6 @@ class JobSessionsController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@job = Job.where(id: params[:job_id]).first
 		@job_session = @job.job_sessions.build(job_session_params)
 
