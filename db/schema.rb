@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604213900) do
+ActiveRecord::Schema.define(version: 20140606215609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140604213900) do
     t.string  "session_goals"
     t.integer "sessionable_id"
     t.string  "sessionable_type"
+    t.boolean "active"
   end
 
   create_table "jobs", force: true do |t|
@@ -46,5 +47,7 @@ ActiveRecord::Schema.define(version: 20140604213900) do
     t.datetime "updated_at"
     t.string   "email"
   end
+
+  add_index "users", ["github_uid"], name: "index_users_on_github_uid", unique: true, using: :btree
 
 end
