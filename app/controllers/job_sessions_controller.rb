@@ -6,6 +6,7 @@ class JobSessionsController < ApplicationController
 	def create
 		@job = Job.where(id: params[:job_id]).first
 		@job_session = @job.job_sessions.build(job_session_params)
+		@job_session.active = false
 
 		if @job_session.save
 			# redirect_to :back, notice: "Your work session has begun."

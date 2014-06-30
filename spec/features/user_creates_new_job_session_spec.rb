@@ -22,18 +22,42 @@ feature 'User creates and views jobs', %Q{
 		fill_in 'job_description', with: 'goal one, goal two'
 		click_button('Create Job')
 	end
-
 	scenario 'User creates a job session with valid info' do 
 		expect(page).to have_content('Job Created')
-
 		expect(page).to have_content('Start a new job session')
-		# expect(page).to have_content('00:00')
-
+		
 		fill_in 'job_session[session_goals]', with: 'Hurr Durr CODE THIS'
 		fill_in 'job_session[session_title]', with: 'testing User input'
 		click_button('Start Session')
 		expect(page).to have_content('testing User input')
+		job_session = JobSession.first
+		expect(job_session.active?).to eql(false)
+	end
+	scenario 'User creates a job session with invalid info' do 
+		expect(page).to have_content('Job Created')
+		expect(page).to have_content('Start a new job session')
+
+		fill_in 'job_session[session_goals]', with: ' Bush-whacking Fun that\'s my goal!'
+		fill_in 'job_session[session_title]', with: ''
+		click_button('Start Session')
+		expect(page).to_not have_content('Bush-whacking Fun that\'s my goal!')
+		expect(page).to have_content('There was an error starting your session. Please try again.')
+	end
+	scenario 'User ends session, Session length is recorded' do 
+		fill_in 'job_session[session_goals]', with: ' Bush-whacking Fun that\'s my goal!'
+		fill_in 'job_session[session_title]', with: 'WOWWWW Great Session'
+		click_button('Start Session')
+		job_session = JobSession.first
+		expect(job_session.active?).to eql(false)
+		click_button('Start Timer')
+
+		Timecop.freeze(Time.now + 30.minutes) do 
+			# expect(job_session.active?).to eql(true)
+			click_button('Pause Session')
+			binding.pry
+			expect(job_session.length).to_not eql(0)
+		end
+
 
 	end
-
 end

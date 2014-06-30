@@ -23,8 +23,9 @@
 		<div class="stopwatch" data-timer="0" style="width: 400px;">
 		</div>
 		<div>
-			<%= button_to 'Start Timer', ' ', class: 'timer_start' %> 
-			<%= button_to 'Stop Timer', ' ', class: 'timer_stop' %>
+			<button type=button class="timer_start">Start Timer</button>
+			<button type=button class="timer_stop">Pause Session</button>
+			<button type=button class="session_end">End Session</button>
 		</div>
 	<%- end -%>
 </div>
