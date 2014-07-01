@@ -53,8 +53,7 @@ feature 'User creates and views jobs', %Q{
 
 		Timecop.freeze(Time.now + 30.minutes) do 
 			# expect(job_session.active?).to eql(true)
-			click_button('Pause Session')
-			binding.pry
+			click_button('End Session')
 			expect(job_session.length).to_not eql(0)
 		end
 

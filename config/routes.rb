@@ -16,6 +16,8 @@ JobTracker::Application.routes.draw do
 
   post '/createNewRepo', to: 'jobs#createRepo'
 
+  post '/endSession', to: 'job_sessions#update'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

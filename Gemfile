@@ -26,6 +26,8 @@ gem 'gon'
 gem 'psych'
 
 gem 'simple_form'
+
+gem 'foundation-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

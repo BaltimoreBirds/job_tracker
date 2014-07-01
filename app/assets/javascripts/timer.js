@@ -19,11 +19,11 @@ jQuery(document).ready(function() {
 		var sessionMins = parseInt($('div.textDiv_Minutes > span').text());
 		var sessionSecs = parseInt($('div.textDiv_Seconds > span').text());
 		//Calculates Session length in seconds
-		var sessionLength = (sessionDays*86400) + (sessionHours*3600) + (sessionMin*60) + SessionSecs;
-		// $.post( "/endSession", { length:  })
-		// 	.done(function( data ) {
-		//     alert(data);
-		// }, "json");	
+		var sessionLength = (sessionDays*86400) + (sessionHours*3600) + (sessionMins*60) + sessionSecs;
+		$.post( "/endSession", { length: sessionLength, job_sessionId: window.job_sessionId })
+			.done(function( data ) {
+		    alert(data);
+		}, "json");	
 	});
 	
 
