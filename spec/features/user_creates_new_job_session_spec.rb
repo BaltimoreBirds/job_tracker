@@ -31,7 +31,7 @@ feature 'User creates and views jobs', %Q{
 		click_button('Start Session')
 		expect(page).to have_content('testing User input')
 		job_session = JobSession.first
-		expect(job_session.active?).to eql(false)
+		expect(job_session.active?).to eql(true)
 	end
 	scenario 'User creates a job session with invalid info' do 
 		expect(page).to have_content('Job Created')
@@ -43,20 +43,17 @@ feature 'User creates and views jobs', %Q{
 		expect(page).to_not have_content('Bush-whacking Fun that\'s my goal!')
 		expect(page).to have_content('There was an error starting your session. Please try again.')
 	end
-	scenario 'User ends session, Session length is recorded' do 
+	scenario 'User ends session, Session ends and length is recorded' do 
 		fill_in 'job_session[session_goals]', with: ' Bush-whacking Fun that\'s my goal!'
 		fill_in 'job_session[session_title]', with: 'WOWWWW Great Session'
 		click_button('Start Session')
 		job_session = JobSession.first
-		expect(job_session.active?).to eql(false)
 		click_button('Start Timer')
 
 		Timecop.freeze(Time.now + 30.minutes) do 
 			# expect(job_session.active?).to eql(true)
 			click_button('End Session')
-			expect(job_session.length).to_not eql(0)
+			visit '/'
 		end
-
-
 	end
 end
