@@ -20,6 +20,7 @@ jQuery(document).ready(function() {
 		var sessionSecs = parseInt($('div.textDiv_Seconds > span').text());
 		//Calculates Session length in seconds
 		var sessionLength = (sessionDays*86400) + (sessionHours*3600) + (sessionMins*60) + sessionSecs;
+		//Posts to Job_Sessions#update via /endSession route.
 		$.post( "/endSession", { length: sessionLength, job_sessionId: window.job_sessionId })
 			.done(function( data ) {
 		    alert(data);

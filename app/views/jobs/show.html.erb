@@ -36,5 +36,7 @@
 </div>
 
 <script>
-  window.job_sessionId = <%= @job.job_sessions.reverse[1].id %>;
+	<%- if job_session != nil -%>
+		window.job_sessionId = <%= @job.job_sessions.reverse[1].id %>;
+	<%- end -%>
 </script>
