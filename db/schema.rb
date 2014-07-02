@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603185912) do
+ActiveRecord::Schema.define(version: 20140630214043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "job_sessions", force: true do |t|
+    t.string  "session_title"
+    t.string  "session_goals"
+    t.integer "sessionable_id"
+    t.string  "sessionable_type"
+    t.boolean "active"
+    t.integer "length",           default: 0
+  end
 
   create_table "jobs", force: true do |t|
     t.string   "title",       null: false

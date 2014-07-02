@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Job do
   it{should have_many :users}
+  it{ should have_many :job_sessions}
 
   it { should have_valid(:title).when('string') }
   it { should_not have_valid(:title).when(' ', nil) }

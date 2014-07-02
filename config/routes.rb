@@ -1,7 +1,9 @@
 JobTracker::Application.routes.draw do
   resources :users
-  resources :jobs
   resources :sessions
+  resources :jobs do
+    resources :job_sessions
+  end
   
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
@@ -13,6 +15,8 @@ JobTracker::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
 
   post '/createNewRepo', to: 'jobs#createRepo'
+
+  post '/endSession', to: 'job_sessions#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
