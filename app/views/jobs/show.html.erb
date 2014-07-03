@@ -1,42 +1,60 @@
-<h1> Job page</h1>
-<h3><%= @job.title %></h3>
-<div>Github Repository:<%= @job.github_repo %></div>
-<div>Description:<%= @job.description %></div>
-<h3>Start a new sessions</h3>
-<div><%= link_to 'Start a new job session' %></div>
+<div class="row">
+	<div class="small-12 large-6 columns">
+		<h1> Job page</h1>
+		<h3><%= @job.title %></h3>
+		<div>Github Repository:<%= @job.github_repo %></div>
+		<div>Description:<%= @job.description %></div>
+		<h3>Start a new sessions</h3>
+		<div><%= link_to 'Start a new job session' %></div>
 
-<div>
-	<%= simple_form_for [@job, @job.job_sessions.build] do |f| %>
-		<%= f.input :session_title %>
-		<%= f.input :session_goals, as: :text %>
-		<%= f.submit 'Start Session'%>
-	<% end %>
-</div>
+		<div>
+			<%= simple_form_for [@job, @job.job_sessions.build] do |f| %>
+				<%= f.input :session_title %>
+				<%= f.input :session_goals, as: :text %>
+				<%= f.submit 'Create Session'%>
+			<% end %>
+		</div>
+	</div>
 
-<div>
-	<!-- Should eventually show all job sessions. Only showing most recent -->
-	<h3>Sessions</h3>
-	<%- job_session = @job.job_sessions.reverse[1] -%>
-	<%- if @job.job_sessions != [] && (job_session != nil)-%>
-		<h4>Session title</h4>
-		<%= @job.job_sessions.reverse[1].session_title %>
-		<h4>Session Goals</h4>
-		<%= @job.job_sessions.reverse[1].session_goals %>
+	<div class="small-12 large-6 columns">
+		<!-- Should eventually show all job sessions. Only showing most recent -->
+		<h3> Current Session</h3>
+		<%- job_sessions = @job.job_sessions -%>
+		<%- current_session = @job.job_sessions.reverse[1] -%>
+		<%- if (current_session != []) && (current_session != nil  && (current_session.active?))-%>
+			<h4>Session title</h4>
+			<%= current_session.session_title %>
+			<h4>Session Goals</h4>
+			<%= current_session.session_goals %>
+			<h4>Session Length</h4>
+			<%= current_session.length %>
 
-		<%- if job_session.active? -%>
-			<div class="stopwatch" data-timer="0" style="width: 400px;">
-			</div>
-			<div>
-				<button type=button class="timer_start">Start Timer</button>
-				<button type=button class="timer_stop">Pause Session</button>
-				<button type=button class="session_end">End Session</button>
-			</div>
+			<%- if current_session.active? -%>
+				<div class="stopwatch" data-timer="0" style="width: 400px;">
+				</div>
+				<div>
+					<button type=button class="timer_start">Start Timer</button>
+					<button type=button class="timer_stop">Pause Session</button>
+					<button type=button class="session_end">End Session</button>
+				</div>
+				<%- end -%>
+		<%- end -%>
+	</div>
+	<div class="small-12 columns">
+		<%- job_sessions.reverse.each do |session| -%>
+			<%- if (session.id != nil) && (!session.active?) -%>
+				<div class="small-12 columns" style="border: 2px solid grey;">
+					<p>Session title: <%= session.session_title %></p>
+					<p>Session Goals: <%= session.session_goals %></p>
+					<p id="">Session Length: <%= session.humanize %><p>
+				</div>
 			<%- end -%>
-	<%- end -%>
+		<%- end -%>
+	</div>
 </div>
 
 <script>
-	<%- if job_session != nil -%>
+	<%- if current_session != nil -%>
 		window.job_sessionId = <%= @job.job_sessions.reverse[1].id %>;
 	<%- end -%>
 </script>
