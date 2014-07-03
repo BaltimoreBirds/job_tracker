@@ -26,6 +26,7 @@ class JobSessionsController < ApplicationController
 		@job_session.active = false
 		@job_session.save!
 	    respond_to do |format|
+	    	# Calls model method humanize to make session length readable, sends it back in json hash
 	        format.json  { render json:  {  session: @job_session,
 	        								human_length: @job_session.humanize} }
 	    end
