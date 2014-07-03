@@ -27,7 +27,7 @@
 			<h4>Session Goals</h4>
 			<%= current_session.session_goals %>
 			<h4>Session Length</h4>
-			<%= current_session.length %>
+			<div id="current_session_length"><%= current_session.length %></div>
 
 			<%- if current_session.active? -%>
 				<div class="stopwatch" data-timer="0" style="width: 400px;">
@@ -46,7 +46,7 @@
 				<div class="small-12 columns" style="border: 2px solid grey;">
 					<p>Session title: <%= session.session_title %></p>
 					<p>Session Goals: <%= session.session_goals %></p>
-					<p id="">Session Length: <%= session.humanize %><p>
+					<p>Session Length: <%= session.humanize %><p>
 				</div>
 			<%- end -%>
 		<%- end -%>
