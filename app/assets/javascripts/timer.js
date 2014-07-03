@@ -23,9 +23,7 @@ jQuery(document).ready(function() {
 		//Posts to Job_Sessions#update via /endSession route.
 		$.post( "/endSession", { length: sessionLength, job_sessionId: window.job_sessionId })
 			.done(function( data ) {
-		    alert(data);
+				$('#current_session_length').text(data.human_length);
 		}, "json");	
 	});
-	
-
 });

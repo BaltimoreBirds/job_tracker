@@ -28,7 +28,7 @@ feature 'User creates and views jobs', %Q{
 		
 		fill_in 'job_session[session_goals]', with: 'Hurr Durr CODE THIS'
 		fill_in 'job_session[session_title]', with: 'testing User input'
-		click_button('Start Session')
+		click_button('Create Session')
 		expect(page).to have_content('testing User input')
 		job_session = JobSession.first
 		expect(job_session.active?).to eql(true)
@@ -39,14 +39,14 @@ feature 'User creates and views jobs', %Q{
 
 		fill_in 'job_session[session_goals]', with: ' Bush-whacking Fun that\'s my goal!'
 		fill_in 'job_session[session_title]', with: ''
-		click_button('Start Session')
+		click_button('Create Session')
 		expect(page).to_not have_content('Bush-whacking Fun that\'s my goal!')
 		expect(page).to have_content('There was an error starting your session. Please try again.')
 	end
 	scenario 'User ends session, Session ends and length is recorded' do 
 		fill_in 'job_session[session_goals]', with: ' Bush-whacking Fun that\'s my goal!'
 		fill_in 'job_session[session_title]', with: 'WOWWWW Great Session'
-		click_button('Start Session')
+		click_button('Create Session')
 		job_session = JobSession.first
 		click_button('Start Timer')
 

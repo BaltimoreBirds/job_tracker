@@ -23,11 +23,12 @@ class JobSessionsController < ApplicationController
 	def update
 		@job_session = JobSession.find(params[:job_sessionId])
 		@job_session.length = params[:length]
-		binding.pry
 		@job_session.active = false
 		@job_session.save!
 	    respond_to do |format|
-	        format.json  { render json:  @job_session }
+	    	# Calls model method humanize to make session length readable, sends it back in json hash
+	        format.json  { render json:  {  session: @job_session,
+	        								human_length: @job_session.humanize} }
 	    end
 	end
 

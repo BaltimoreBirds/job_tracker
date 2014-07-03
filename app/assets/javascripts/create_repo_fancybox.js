@@ -19,8 +19,7 @@ jQuery(document).ready(function() {
 				})
 
 		    }
-		});
-
+		}); 
 		// posts to createNewRepo job controller action action, updates new job form
 		function createRepo(newRepoName){
 			$.post( "/createNewRepo", { repoName: newRepoName })
