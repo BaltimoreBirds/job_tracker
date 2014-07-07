@@ -1,0 +1,14 @@
+<%- current_user?.jobs.each do |job| -%>
+	<div class="small-12 columns">
+		<%= job.title %>
+	</div>
+	<div class="small-12 columns">
+		<%= job.description %>
+	</div>
+	<div class="small-12 columns">
+		<%= job.github_repo %>
+	</div>
+	<div class="small-12 columns">
+		<%= job.created_at %>
+	</div>
+<%- end -%>	

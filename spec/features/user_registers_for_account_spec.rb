@@ -15,7 +15,7 @@ feature 'User signs in with github', %Q{
 
 		prev_count = User.count
 		visit '/' 
-		expect(page).to have_content('Job Tracker')
+		expect(page).to have_content('TrackIT')
 		click_link('Sign in')
 
 		expect(User.count).to eql(prev_count + 1)

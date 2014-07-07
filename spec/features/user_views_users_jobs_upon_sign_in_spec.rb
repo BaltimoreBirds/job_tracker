@@ -12,11 +12,22 @@ feature 'User creates and views jobs', %Q{
 } do
 	before(:each) do 
 		visit '/' 
-		expect(page).to have_content('Job Tracker')
+		expect(page).to have_content('TrackIT')
 		click_link('Sign in')
+		user = User.where(github_uid: '4583382').first
+		job = FactoryGirl.create(:job, id: 2)
+		job_user = FactoryGirl.create(:jobs_user, user_id: user.id, job_id: 2)
+		click_link('Start a new Job')
+		fill_in 'job_title', with: 'Fake Job'
+		fill_in 'job_github_repo', with: 'https://github.com/BaltimoreBirds/job_tracker'
+		fill_in 'job_description', with: 'goal one, goal two'
+		click_button('Create Job')
 	end
 	scenario 'User sees their jobs upon sign in' do 
-		expect(page).to have_content('Job Tracker')
-		
+		visit '/'
+		expect(page).to have_content('Fake Job')
+		expect(page).to have_content('goal one, goal two')
+		expect(page).to have_content('MyString')
+		expect(page).to have_content('My goals, your goals')
 	end
 end
