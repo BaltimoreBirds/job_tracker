@@ -14,6 +14,7 @@ feature 'User creates and views jobs', %Q{
 		visit '/' 
 		expect(page).to have_content('TrackIT')
 		click_link('Sign in')
+		# User with the github_uid of '4583382' is the stubbed oauth user for testing 
 		user = User.where(github_uid: '4583382').first
 		job = FactoryGirl.create(:job, id: 2)
 		job_user = FactoryGirl.create(:jobs_user, user_id: user.id, job_id: 2)
@@ -29,5 +30,7 @@ feature 'User creates and views jobs', %Q{
 		expect(page).to have_content('goal one, goal two')
 		expect(page).to have_content('MyString')
 		expect(page).to have_content('My goals, your goals')
+		click_link('Fake Job')
+		expect(page).to have_content('goal one, goal two')
 	end
 end
