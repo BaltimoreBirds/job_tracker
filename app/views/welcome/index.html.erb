@@ -1,9 +1,13 @@
-<h1>Welcome index! Job Tracker</h1>
+<h1>Welcome. TrackIT</h1>
 
-<% if current_user? %>
-	<%= link_to 'Start a new Job', new_job_path %>
-<% end %>
-
+<div class="row">
+	<% if current_user? %>
+		<div class="small-12 columns">
+			<%= link_to 'Start a new Job', new_job_path %>
+		</div>
+		<%= render 'jobs/users_jobs' %>
+	<% end %>
+</div>
 
 
 

@@ -14,7 +14,7 @@ feature 'User creates and views jobs', %Q{
 } do
 	before(:each) do 
 		visit '/' 
-		expect(page).to have_content('Job Tracker')
+		expect(page).to have_content('TrackIT')
 		click_link('Sign in')
 		click_link('Start a new Job')
 		fill_in 'job_title', with: 'Fake Job'

@@ -49,6 +49,4 @@ ActiveRecord::Schema.define(version: 20140630214043) do
     t.string   "email"
   end
 
-  add_index "users", ["github_uid"], name: "index_users_on_github_uid", unique: true, using: :btree
-
 end
